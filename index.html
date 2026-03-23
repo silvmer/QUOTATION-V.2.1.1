@@ -106,8 +106,8 @@
         ${!isEnd2 ? '<h4>3. END 1 CONFIGURATION</h4>' : ''}
         <div class="form-row">
             <div class="form-group small"><label>Size</label><input type="text" id="${prefix}s"></div>
-            <div class="form-group"><label>Material</label><select id="${prefix}m"><option value="CS" selected>CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}mo" class="others-input hidden"></div>
-            <div class="form-group"><label>Thread/Flange</label><select id="${prefix}t"><option value="NPT" selected>NPT</option><option value="BSP">BSP</option><option value="JIC">JIC</option><option value="METRIC">METRIC</option><option value="ORFS">ORFS</option><option value="SAE CODE 61">SAE CODE 61</option><option value="SAE CODE 62">SAE CODE 62</option><option value="FLANGE">FLANGE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}to" class="others-input hidden"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}m"><option value="CS" selected>CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}mo" class="others-input hidden"></div>
+            <div class="form-group"><label>Thread/Flange</label><select id="${prefix}t"><option value="NPT" selected>NPT</option><option value="BSP">BSP</option><option value="JIC">JIC</option><option value="9/16&quot; UNF RH & LH">9/16" UNF RH & LH</option><option value="METRIC">METRIC</option><option value="ORFS">ORFS</option><option value="SAE CODE 61">SAE CODE 61</option><option value="SAE CODE 62">SAE CODE 62</option><option value="FLANGE">FLANGE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}to" class="others-input hidden"></div>
             <div class="form-group"><label>Gender/Rating</label><select id="${prefix}g"><option value="MALE" selected>MALE</option><option value="FEMALE">FEMALE</option><option value="CL150">CL150</option><option value="CL300">CL300</option><option value="PN6">PN6</option><option value="PN10">PN10</option><option value="PN16">PN16</option><option value="PN25">PN25</option><option value="JIS5K">JIS5K</option><option value="JIS10K">JIS10K</option><option value="JIS16K">JIS16K</option><option value="JIS20K">JIS20K</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}go" class="others-input hidden"></div>
             <div class="form-group"><label>Fixity</label><select id="${prefix}f"><option value="BLANK" selected>BLANK</option><option value="FIXED">FIXED</option><option value="SWIVEL">SWIVEL</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}fo" class="others-input hidden"></div>
             <div class="form-group"><label>Shape</label><select id="${prefix}sh"><option value="BLANK" selected>BLANK</option><option value="STRAIGHT">STRAIGHT</option><option value="90 DEG">90 DEG</option><option value="45 DEG">45 DEG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}sho" class="others-input hidden"></div>
@@ -115,20 +115,25 @@
         <div class="form-row" style="border-top: none; padding-top: 0;">
             <div class="form-group"><label>Attach Method</label><select id="${prefix}am"><option value="BLANK" selected>BLANK</option><option value="SCREWED WITH">SCREWED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}amo" class="others-input hidden"></div>
             <div class="form-group small"><label>Size</label><input type="text" id="${prefix}as"></div>
-            <div class="form-group"><label>Material</label><select id="${prefix}am_mat"><option value="BLANK" selected>BLANK</option><option value="CS">CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}am_mato" class="others-input hidden"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}am_mat"><option value="BLANK" selected>BLANK</option><option value="CS">CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}am_mato" class="others-input hidden"></div>
             <div class="form-group"><label>Type</label><select id="${prefix}at"><option value="BLANK" selected>BLANK</option><option value="HAMMER UNION">HAMMER UNION</option><option value="CAMLOCK">CAMLOCK</option><option value="QUICK RELEASE COUPLING (QRC)">QUICK RELEASE COUPLING (QRC)</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ato" class="others-input hidden"></div>
             <div class="form-group"><label>Model</label><select id="${prefix}al"><option value="BLANK" selected>BLANK</option><option value="FIG100">FIG100</option><option value="FIG200">FIG200</option><option value="FIG206">FIG206</option><option value="FIG602">FIG602</option><option value="FIG1502">FIG1502</option><option value="TYPE A">TYPE A</option><option value="TYPE B">TYPE B</option><option value="TYPE C">TYPE C</option><option value="TYPE D">TYPE D</option><option value="TYPE E">TYPE E</option><option value="TYPE F">TYPE F</option><option value="ISO 7241- A SERIES">ISO 7241- A SERIES</option><option value="ISO 7241- B SERIES">ISO 7241- B SERIES</option><option value="ISO 14540 - 10K PSI">ISO 14540 - 10K PSI</option><option value="ISO 16028- FLAT FACED SERIES">ISO 16028- FLAT FACED SERIES</option><option value="AIR BREATHING">AIR BREATHING</option><option value="WATER BLAST - 15K PSI">WATER BLAST - 15K PSI</option><option value="TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)">TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)</option><option value="THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )">THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )</option><option value="PNUEMATIC">PNUEMATIC</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}alo" class="others-input hidden"></div>
             <div class="form-group"><label>Gender</label><select id="${prefix}ag"><option value="BLANK" selected>BLANK</option><option value="MALE">MALE</option><option value="FEMALE">FEMALE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ago" class="others-input hidden"></div>
             <div class="form-group"><label>Accessory</label><select id="${prefix}ac"><option value="BLANK" selected>BLANK</option><option value="WITH DUST CAP">WITH DUST CAP</option><option value="WITH DUST PLUG">WITH DUST PLUG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}aco" class="others-input hidden"></div>
         </div>`;
 
-        document.getElementById('end1Container').innerHTML = buildEndHTML('e1', false);
-        document.getElementById('end2Container').innerHTML = buildEndHTML('e2', true);
-
         const getEl = (id) => document.getElementById(id);
 
         window.onload = () => {
+            if (getEl('end1Container').innerHTML.trim() === "") {
+                getEl('end1Container').innerHTML = buildEndHTML('e1', false);
+            }
+            if (getEl('end2Container').innerHTML.trim() === "") {
+                getEl('end2Container').innerHTML = buildEndHTML('e2', true);
+            }
+
             if (!getEl('quoteDate').value) getEl('quoteDate').value = new Date().toISOString().split('T')[0];
+            
             if (typeof hoseDatabase !== 'undefined') {
                 const list = getEl('hoseList');
                 if(list.options.length === 0) {
@@ -226,21 +231,43 @@
             const dateVal = getEl('quoteDate').value; 
             const fDate = dateVal ? dateVal.split('-').map(s => s.slice(-2)).join('-') : '26-03-23'; 
             const fileName = `${fDate}-${getEl('estimatorCode').value || "JC"}-${getEl('quoteNum').value || "XXXX"}.html`;
+            
             const clone = document.documentElement.cloneNode(true);
             const dbScript = clone.querySelector('#dbScript');
             if (dbScript) dbScript.remove();
-            const oInputs = document.querySelectorAll('input, select');
-            const cInputs = clone.querySelectorAll('input, select');
-            oInputs.forEach((el, i) => {
+            
+            const originalInputs = document.querySelectorAll('input, select');
+            const clonedInputs = clone.querySelectorAll('input, select');
+
+            originalInputs.forEach((el, i) => {
                 if (el.tagName === 'SELECT') {
-                    Array.from(cInputs[i].options).forEach(opt => {
-                        if (opt.value === el.value) opt.setAttribute('selected', 'selected');
-                        else opt.removeAttribute('selected');
+                    Array.from(clonedInputs[i].options).forEach((opt) => {
+                        if (opt.value === el.value) {
+                            opt.setAttribute('selected', 'selected');
+                        } else {
+                            opt.removeAttribute('selected');
+                        }
                     });
-                } else { cInputs[i].setAttribute('value', el.value); }
+                } else {
+                    clonedInputs[i].setAttribute('value', el.value);
+                }
+                
+                if (el.classList.contains('hidden')) {
+                    clonedInputs[i].classList.add('hidden');
+                } else {
+                    clonedInputs[i].classList.remove('hidden');
+                }
             });
+
+            if (getEl('orientationRow').classList.contains('hidden')) {
+                clone.querySelector('#orientationRow').classList.add('hidden');
+            } else {
+                clone.querySelector('#orientationRow').classList.remove('hidden');
+            }
+
             clone.querySelector('#result').innerText = document.getElementById('result').innerText;
             clone.querySelector('#hoseDescDisplay').innerText = document.getElementById('hoseDescDisplay').innerText;
+            
             const a = document.createElement('a');
             a.href = URL.createObjectURL(new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: 'text/html' }));
             a.download = fileName; a.click();
