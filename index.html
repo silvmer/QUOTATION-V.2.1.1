@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hose Quotation Generator Pro</title>
+    <style>
+        /*LICENSED UNDER:  GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 https://github.com/silvmer/QUOTATION-V.2.1.1/blob/main/LICENSE, https://www.gnu.org/licenses/gpl-3.0.en.html#license-text*/
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1100px; margin: 20px auto; padding: 20px; background-color: #f4f7f6; color: #333; }
+        .container { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        h2 { border-bottom: 2px solid #3498db; padding-bottom: 10px; color: #2c3e50; margin-top: 0; }
+        h4 { margin: 20px 0 10px 0; color: #34495e; border-left: 4px solid #3498db; padding-left: 10px; background: #f8f9fa; padding-top: 5px; padding-bottom: 5px; }
+        .config-header { display: flex; align-items: center; justify-content: space-between; background: #f8f9fa; margin: 20px 0 10px 0; border-left: 4px solid #3498db; }
+        .config-header h4 { margin: 0; border-left: none; background: none; }
+        .form-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; background: #fdfdfd; padding: 10px; border: 1px solid #eee; border-radius: 8px; }
+        .form-group { flex: 1; min-width: 120px; }
+        .form-group.small { flex: 0.5; min-width: 80px; }
+        .header-section { background: #eef2f7; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #d1d8e0; }
+        label { display: block; margin-bottom: 4px; font-weight: 600; font-size: 0.75em; color: #666; text-transform: uppercase; }
+        select, input { width: 100%; padding: 6px; border: 1px solid #ccd1d9; border-radius: 4px; box-sizing: border-box; font-size: 0.85em; }
+        .desc-display { font-size: 0.9em; color: #2980b9; margin-top: 5px; font-weight: bold; min-height: 1.2em; }
+        .result-box { background: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; white-space: pre-wrap; font-family: 'Courier New', Courier, monospace; font-size: 1em; line-height: 1.5; margin-top: 20px; border: 2px solid #34495e; }
+        .btn-container { display: flex; gap: 10px; margin-top: 15px; }
+        button { border: none; padding: 12px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; color: #fff; transition: 0.2s; }
+        .copy-btn { background: #27ae60; flex: 2; } .copy-btn:hover { background: #219150; }
+        .save-btn { background: #3498db; flex: 1; } .save-btn:hover { background: #2980b9; }
+        .clear-btn { background: #e74c3c; flex: 1; } .clear-btn:hover { background: #c0392b; }
+        .sync-btn { background: #7f8c8d; padding: 6px 12px; font-size: 0.7em; margin-right: 10px; } .sync-btn:hover { background: #95a5a6; }
+        .hidden { display: none; }
+        .others-input { margin-top: 4px; border-color: #3498db; background: #ebf5fb; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Hose Quotation Generator</h2>
+
+        <div class="header-section">
+            <div class="form-row" style="background:transparent; border:none; padding:0;">
+                <div class="form-group"><label>Estimator Code</label><input type="text" id="estimatorCode" value="JC"></div>
+                <div class="form-group"><label>Quotation Number</label><input type="text" id="quoteNum" value="XXXX"></div>
+                <div class="form-group"><label>Date</label><input type="date" id="quoteDate"></div>
+            </div>
+            <div class="form-row" style="background:transparent; border:none; padding:0; margin-top:10px;">
+                <div class="form-group"><label>Customer Name</label><input type="text" id="customerName" placeholder="Enter customer name..."></div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>1. Hose Part Number:</label>
+                <input type="text" id="hoseInput" list="hoseList" placeholder="Search part number...">
+                <datalist id="hoseList"></datalist>
+                <div id="hoseDescDisplay" class="desc-display"></div>
+            </div>
+            <div class="form-group">
+                <label>2. Assembly Method:</label>
+                <select id="method">
+                    <option value="CRIMPED WITH">CRIMPED WITH</option><option value="SWAGED WITH">SWAGED WITH</option>
+                    <option value="WELDED WITH">WELDED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="OTHERS">OTHERS: SPECIFY</option>
+                </select>
+                <input type="text" id="methodOther" class="others-input hidden" placeholder="Enter method...">
+            </div>
+        </div>
+
+        <div id="end1Container"></div>
+
+        <div class="config-header">
+            <h4>4. END 2 CONFIGURATION</h4>
+            <button type="button" class="sync-btn" onclick="copyEnd1ToEnd2()">Same as End 1 Configuration</button>
+        </div>
+        <div id="end2Container"></div>
+
+        <div id="orientationRow" class="form-group hidden" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; margin-bottom: 20px;">
+            <label style="color: #856404;">Dual Bend Orientation:</label>
+            <select id="orientation">
+                <option value='0 DEG - "C-TYPE"'>0 DEG - "C-TYPE"</option><option value='180 DEG - "S-TYPE"'>180 DEG - "S-TYPE"</option><option value="OTHERS">OTHERS: SPECIFY</option>
+            </select>
+            <input type="text" id="orientationOther" class="others-input hidden" placeholder="Angle...">
+        </div>
+
+        <h4>5 & 6. LENGTH & TOLERANCE</h4>
+        <div class="form-row">
+            <div class="form-group small"><label>Length</label><input type="number" id="lenVal" value="1"></div>
+            <div class="form-group"><label>UOM</label>
+                <select id="uom"><option value="METER">METER</option><option value="FEET">FEET</option><option value="YARD">YARD</option><option value="OTHERS">OTHERS</option></select>
+                <input type="text" id="uomOther" class="others-input hidden">
+            </div>
+            <div class="form-group"><label>Tolerance</label><input type="text" id="tolerance" value="+/-3%"></div>
+        </div>
+
+        <h3>Generated Quotation:</h3>
+        <div id="result" class="result-box">Waiting for part number...</div>
+        
+        <div class="btn-container">
+            <button class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+            <button class="save-btn" onclick="saveFile()">SAVE</button>
+            <button class="clear-btn" onclick="clearForm()">CLEAR</button>
+        </div>
+    </div>
+
+    <script id="dbScript" src="database.js" onerror="console.warn('Running in standalone mode or database.js missing.');"></script>
+    
+    <script>
+        const buildEndHTML = (prefix, isEnd2 = false) => `
+        ${!isEnd2 ? '<h4>3. END 1 CONFIGURATION</h4>' : ''}
+        <div class="form-row">
+            <div class="form-group small"><label>Size</label><input type="text" id="${prefix}s"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}m"><option value="CS" selected>CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}mo" class="others-input hidden"></div>
+            <div class="form-group"><label>Thread/Flange</label><select id="${prefix}t"><option value="NPT" selected>NPT</option><option value="BSP">BSP</option><option value="JIC">JIC</option><option value="METRIC">METRIC</option><option value="ORFS">ORFS</option><option value="SAE CODE 61">SAE CODE 61</option><option value="SAE CODE 62">SAE CODE 62</option><option value="FLANGE">FLANGE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}to" class="others-input hidden"></div>
+            <div class="form-group"><label>Gender/Rating</label><select id="${prefix}g"><option value="MALE" selected>MALE</option><option value="FEMALE">FEMALE</option><option value="CL150">CL150</option><option value="CL300">CL300</option><option value="PN6">PN6</option><option value="PN10">PN10</option><option value="PN16">PN16</option><option value="PN25">PN25</option><option value="JIS5K">JIS5K</option><option value="JIS10K">JIS10K</option><option value="JIS16K">JIS16K</option><option value="JIS20K">JIS20K</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}go" class="others-input hidden"></div>
+            <div class="form-group"><label>Fixity</label><select id="${prefix}f"><option value="BLANK" selected>BLANK</option><option value="FIXED">FIXED</option><option value="SWIVEL">SWIVEL</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}fo" class="others-input hidden"></div>
+            <div class="form-group"><label>Shape</label><select id="${prefix}sh"><option value="BLANK" selected>BLANK</option><option value="STRAIGHT">STRAIGHT</option><option value="90 DEG">90 DEG</option><option value="45 DEG">45 DEG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}sho" class="others-input hidden"></div>
+        </div>
+        <div class="form-row" style="border-top: none; padding-top: 0;">
+            <div class="form-group"><label>Attach Method</label><select id="${prefix}am"><option value="BLANK" selected>BLANK</option><option value="SCREWED WITH">SCREWED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}amo" class="others-input hidden"></div>
+            <div class="form-group small"><label>Size</label><input type="text" id="${prefix}as"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}am_mat"><option value="BLANK" selected>BLANK</option><option value="CS">CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}am_mato" class="others-input hidden"></div>
+            <div class="form-group"><label>Type</label><select id="${prefix}at"><option value="BLANK" selected>BLANK</option><option value="HAMMER UNION">HAMMER UNION</option><option value="CAMLOCK">CAMLOCK</option><option value="QUICK RELEASE COUPLING (QRC)">QUICK RELEASE COUPLING (QRC)</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ato" class="others-input hidden"></div>
+            <div class="form-group"><label>Model</label><select id="${prefix}al"><option value="BLANK" selected>BLANK</option><option value="FIG100">FIG100</option><option value="FIG200">FIG200</option><option value="FIG206">FIG206</option><option value="FIG602">FIG602</option><option value="FIG1502">FIG1502</option><option value="TYPE A">TYPE A</option><option value="TYPE B">TYPE B</option><option value="TYPE C">TYPE C</option><option value="TYPE D">TYPE D</option><option value="TYPE E">TYPE E</option><option value="TYPE F">TYPE F</option><option value="ISO 7241- A SERIES">ISO 7241- A SERIES</option><option value="ISO 7241- B SERIES">ISO 7241- B SERIES</option><option value="ISO 14540 - 10K PSI">ISO 14540 - 10K PSI</option><option value="ISO 16028- FLAT FACED SERIES">ISO 16028- FLAT FACED SERIES</option><option value="AIR BREATHING">AIR BREATHING</option><option value="WATER BLAST - 15K PSI">WATER BLAST - 15K PSI</option><option value="TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)">TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)</option><option value="THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )">THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )</option><option value="PNUEMATIC">PNUEMATIC</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}alo" class="others-input hidden"></div>
+            <div class="form-group"><label>Gender</label><select id="${prefix}ag"><option value="BLANK" selected>BLANK</option><option value="MALE">MALE</option><option value="FEMALE">FEMALE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ago" class="others-input hidden"></div>
+            <div class="form-group"><label>Accessory</label><select id="${prefix}ac"><option value="BLANK" selected>BLANK</option><option value="WITH DUST CAP">WITH DUST CAP</option><option value="WITH DUST PLUG">WITH DUST PLUG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}aco" class="others-input hidden"></div>
+        </div>`;
+
+        document.getElementById('end1Container').innerHTML = buildEndHTML('e1', false);
+        document.getElementById('end2Container').innerHTML = buildEndHTML('e2', true);
+
+        const getEl = (id) => document.getElementById(id);
+
+        window.onload = () => {
+            if (!getEl('quoteDate').value) getEl('quoteDate').value = new Date().toISOString().split('T')[0];
+            if (typeof hoseDatabase !== 'undefined') {
+                const list = getEl('hoseList');
+                if(list.options.length === 0) {
+                    Object.keys(hoseDatabase).sort().forEach(k => {
+                        list.appendChild(new Option(k, k));
+                    });
+                }
+            }
+            bindEvents();
+            update();
+        };
+
+        function bindEvents() {
+            document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', update));
+            getEl('hoseInput').addEventListener('input', () => {
+                const part = getEl('hoseInput').value.trim();
+                if (typeof hoseDatabase !== 'undefined' && hoseDatabase[part]) {
+                    const s = hoseDatabase[part].id || "";
+                    ['e1s', 'e2s', 'e1as', 'e2as'].forEach(id => getEl(id).value = s);
+                }
+                update();
+            });
+        }
+
+        function copyEnd1ToEnd2() {
+            const fields = ['s', 'm', 'mo', 't', 'to', 'g', 'go', 'f', 'fo', 'sh', 'sho', 'am', 'amo', 'as', 'am_mat', 'am_mato', 'at', 'ato', 'al', 'alo', 'ag', 'ago', 'ac', 'aco'];
+            fields.forEach(f => { if(getEl('e1'+f) && getEl('e2'+f)) getEl('e2'+f).value = getEl('e1'+f).value; });
+            update();
+        }
+
+        function resolveVal(sId, oId) {
+            const s = getEl(sId), o = getEl(oId);
+            if (!s) return "";
+            if (s.value === 'BLANK') { if(o) o.classList.add('hidden'); return ""; }
+            if (s.value === 'OTHERS') {
+                if(o) { o.classList.remove('hidden'); return o.value.trim() || "[Specify]"; }
+                return "";
+            }
+            if(o) o.classList.add('hidden');
+            return s.value;
+        }
+
+        function buildEndStr(p) {
+            let base = `${getEl(p+'s').value} ${resolveVal(p+'m', p+'mo')} ${resolveVal(p+'t', p+'to')} ${resolveVal(p+'g', p+'go')} ${resolveVal(p+'f', p+'fo')} ${resolveVal(p+'sh', p+'sho')}`.replace(/\s+/g, ' ').trim();
+            const am = resolveVal(p+'am', p+'amo');
+            if (am !== "") {
+                const attach = `, ${am} ${getEl(p+'as').value} ${resolveVal(p+'am_mat', p+'am_mato')} ${resolveVal(p+'at', p+'ato')} ${resolveVal(p+'al', p+'alo')} ${resolveVal(p+'ag', p+'ago')} ${resolveVal(p+'ac', p+'aco')}`.replace(/\s+/g, ' ').trim();
+                return base + attach;
+            }
+            return base;
+        }
+
+        function update() {
+            const part = getEl('hoseInput').value.trim();
+            let baseDesc = "", baseTemp = "";
+            if (typeof hoseDatabase !== 'undefined' && hoseDatabase[part]) {
+                baseDesc = hoseDatabase[part].desc; baseTemp = hoseDatabase[part].temp;
+                getEl('hoseInput').setAttribute('data-cdesc', baseDesc); getEl('hoseInput').setAttribute('data-ctemp', baseTemp);
+            } else {
+                baseDesc = getEl('hoseInput').getAttribute('data-cdesc') || ""; baseTemp = getEl('hoseInput').getAttribute('data-ctemp') || "";
+            }
+
+            if (!baseDesc) {
+                getEl('hoseDescDisplay').textContent = ""; getEl('result').textContent = "Please enter a valid Part Number.";
+                return;
+            }
+
+            getEl('hoseDescDisplay').textContent = "Description: " + baseDesc;
+            const e1sh = getEl('e1sh').value, e2sh = getEl('e2sh').value;
+            let oriStr = "";
+            if (e1sh !== 'STRAIGHT' && e1sh !== 'BLANK' && e2sh !== 'STRAIGHT' && e2sh !== 'BLANK') {
+                getEl('orientationRow').classList.remove('hidden');
+                oriStr = `\nORIENTATION: ${resolveVal('orientation', 'orientationOther')}`;
+            } else { getEl('orientationRow').classList.add('hidden'); }
+
+            getEl('result').textContent = `${baseDesc}\n${resolveVal('method', 'methodOther')}:\nEND 1: ${buildEndStr('e1')};\nEND 2: ${buildEndStr('e2')};${oriStr}\nHOSE LENGTH - ${getEl('lenVal').value} ${resolveVal('uom', 'uomOther')} (TOLERANCE ${getEl('tolerance').value})\nTEMPERATURE RANGE: ${baseTemp}`;
+        }
+
+        function clearForm() {
+            document.querySelectorAll('input').forEach(el => {
+                if (el.id === 'quoteDate') el.value = new Date().toISOString().split('T')[0];
+                else if (['estimatorCode','quoteNum','lenVal','tolerance'].includes(el.id)) { /* keep defaults */ }
+                else { el.value = ""; el.removeAttribute('data-cdesc'); el.removeAttribute('data-ctemp'); }
+            });
+            document.querySelectorAll('select').forEach(el => {
+                const d = el.querySelector('option[selected]');
+                el.value = d ? d.value : el.options[0].value;
+            });
+            update();
+        }
+
+        function copyToClipboard() { navigator.clipboard.writeText(getEl('result').textContent).then(() => alert("Copied to clipboard!")); }
+
+        function saveFile() {
+            const dateVal = getEl('quoteDate').value; 
+            const fDate = dateVal ? dateVal.split('-').map(s => s.slice(-2)).join('-') : '26-03-23'; 
+            const fileName = `${fDate}-${getEl('estimatorCode').value || "JC"}-${getEl('quoteNum').value || "XXXX"}.html`;
+            const clone = document.documentElement.cloneNode(true);
+            const dbScript = clone.querySelector('#dbScript');
+            if (dbScript) dbScript.remove();
+            const oInputs = document.querySelectorAll('input, select');
+            const cInputs = clone.querySelectorAll('input, select');
+            oInputs.forEach((el, i) => {
+                if (el.tagName === 'SELECT') {
+                    Array.from(cInputs[i].options).forEach(opt => {
+                        if (opt.value === el.value) opt.setAttribute('selected', 'selected');
+                        else opt.removeAttribute('selected');
+                    });
+                } else { cInputs[i].setAttribute('value', el.value); }
+            });
+            clone.querySelector('#result').innerText = document.getElementById('result').innerText;
+            clone.querySelector('#hoseDescDisplay').innerText = document.getElementById('hoseDescDisplay').innerText;
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: 'text/html' }));
+            a.download = fileName; a.click();
+        }
+    </script>
+</body>
+</html>
