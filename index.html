@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hose Quotation Generator Pro</title>
     <style>
-        /*LICENSED UNDER:  GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 https://github.com/silvmer/QUOTATION-V.2.1.1/blob/main/LICENSE, https://www.gnu.org/licenses/gpl-3.0.en.html#license-text*/
+        /*LICENSED UNDER:  GNU GENERAL PUBLIC LICENSE Version 3*/
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1100px; margin: 20px auto; padding: 20px; background-color: #f4f7f6; color: #333; }
         .container { background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         h2 { border-bottom: 2px solid #3498db; padding-bottom: 10px; color: #2c3e50; margin-top: 0; }
@@ -56,8 +56,11 @@
             <div class="form-group">
                 <label>2. Assembly Method:</label>
                 <select id="method">
-                    <option value="CRIMPED WITH">CRIMPED WITH</option><option value="SWAGED WITH">SWAGED WITH</option>
-                    <option value="WELDED WITH">WELDED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="OTHERS">OTHERS: SPECIFY</option>
+                    <option value="CRIMPED WITH">CRIMPED WITH</option>
+                    <option value="SWAGED WITH">SWAGED WITH</option>
+                    <option value="WELDED WITH">WELDED WITH</option>
+                    <option value="CLAMPED WITH">CLAMPED WITH</option>
+                    <option value="OTHERS">OTHERS: SPECIFY</option>
                 </select>
                 <input type="text" id="methodOther" class="others-input hidden" placeholder="Enter method...">
             </div>
@@ -74,7 +77,9 @@
         <div id="orientationRow" class="form-group hidden" style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; margin-bottom: 20px;">
             <label style="color: #856404;">Dual Bend Orientation:</label>
             <select id="orientation">
-                <option value='0 DEG - "C-TYPE"'>0 DEG - "C-TYPE"</option><option value='180 DEG - "S-TYPE"'>180 DEG - "S-TYPE"</option><option value="OTHERS">OTHERS: SPECIFY</option>
+                <option value='0 DEG - "C-TYPE"'>0 DEG - "C-TYPE"</option>
+                <option value='180 DEG - "S-TYPE"'>180 DEG - "S-TYPE"</option>
+                <option value="OTHERS">OTHERS: SPECIFY</option>
             </select>
             <input type="text" id="orientationOther" class="others-input hidden" placeholder="Angle...">
         </div>
@@ -106,18 +111,18 @@
         ${!isEnd2 ? '<h4>3. END 1 CONFIGURATION</h4>' : ''}
         <div class="form-row">
             <div class="form-group small"><label>Size</label><input type="text" id="${prefix}s"></div>
-            <div class="form-group"><label>Material</label><select id="${prefix}m"><option value="CS" selected>CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}mo" class="others-input hidden"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}m"><option value="CS" selected>CS</option><option value="SS">SS</option><option value="GI">GI</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}mo" class="others-input hidden"></div>
             <div class="form-group"><label>Thread/Flange</label><select id="${prefix}t"><option value="NPT" selected>NPT</option><option value="BSP">BSP</option><option value="JIC">JIC</option><option value="9/16&quot; UNF RH & LH">9/16" UNF RH & LH</option><option value="METRIC">METRIC</option><option value="ORFS">ORFS</option><option value="SAE CODE 61">SAE CODE 61</option><option value="SAE CODE 62">SAE CODE 62</option><option value="FLANGE">FLANGE</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}to" class="others-input hidden"></div>
             <div class="form-group"><label>Gender/Rating</label><select id="${prefix}g"><option value="MALE" selected>MALE</option><option value="FEMALE">FEMALE</option><option value="CL150">CL150</option><option value="CL300">CL300</option><option value="PN6">PN6</option><option value="PN10">PN10</option><option value="PN16">PN16</option><option value="PN25">PN25</option><option value="JIS5K">JIS5K</option><option value="JIS10K">JIS10K</option><option value="JIS16K">JIS16K</option><option value="JIS20K">JIS20K</option><option value="OTHERS">OTHERS</option><option value="BLANK">BLANK</option></select><input type="text" id="${prefix}go" class="others-input hidden"></div>
             <div class="form-group"><label>Fixity</label><select id="${prefix}f"><option value="BLANK" selected>BLANK</option><option value="FIXED">FIXED</option><option value="SWIVEL">SWIVEL</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}fo" class="others-input hidden"></div>
             <div class="form-group"><label>Shape</label><select id="${prefix}sh"><option value="BLANK" selected>BLANK</option><option value="STRAIGHT">STRAIGHT</option><option value="90 DEG">90 DEG</option><option value="45 DEG">45 DEG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}sho" class="others-input hidden"></div>
         </div>
         <div class="form-row" style="border-top: none; padding-top: 0;">
-            <div class="form-group"><label>Attach Method</label><select id="${prefix}am"><option value="BLANK" selected>BLANK</option><option value="SCREWED WITH">SCREWED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}amo" class="others-input hidden"></div>
+            <div class="form-group"><label>Attach Method</label><select id="${prefix}am"><option value="NOT APPLICABLE" selected>NOT APPLICABLE</option><option value="SCREWED WITH">SCREWED WITH</option><option value="CLAMPED WITH">CLAMPED WITH</option><option value="BLANK">BLANK</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}amo" class="others-input hidden"></div>
             <div class="form-group small"><label>Size</label><input type="text" id="${prefix}as"></div>
-            <div class="form-group"><label>Material</label><select id="${prefix}am_mat"><option value="BLANK" selected>BLANK</option><option value="CS">CS</option><option value="SS">SS</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}am_mato" class="others-input hidden"></div>
-            <div class="form-group"><label>Type</label><select id="${prefix}at"><option value="BLANK" selected>BLANK</option><option value="HAMMER UNION">HAMMER UNION</option><option value="CAMLOCK">CAMLOCK</option><option value="QUICK RELEASE COUPLING (QRC)">QUICK RELEASE COUPLING (QRC)</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ato" class="others-input hidden"></div>
-            <div class="form-group"><label>Model</label><select id="${prefix}al"><option value="BLANK" selected>BLANK</option><option value="FIG100">FIG100</option><option value="FIG200">FIG200</option><option value="FIG206">FIG206</option><option value="FIG602">FIG602</option><option value="FIG1502">FIG1502</option><option value="TYPE A">TYPE A</option><option value="TYPE B">TYPE B</option><option value="TYPE C">TYPE C</option><option value="TYPE D">TYPE D</option><option value="TYPE E">TYPE E</option><option value="TYPE F">TYPE F</option><option value="ISO 7241- A SERIES">ISO 7241- A SERIES</option><option value="ISO 7241- B SERIES">ISO 7241- B SERIES</option><option value="ISO 14540 - 10K PSI">ISO 14540 - 10K PSI</option><option value="ISO 16028- FLAT FACED SERIES">ISO 16028- FLAT FACED SERIES</option><option value="AIR BREATHING">AIR BREATHING</option><option value="WATER BLAST - 15K PSI">WATER BLAST - 15K PSI</option><option value="TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)">TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)</option><option value="THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )">THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )</option><option value="PNUEMATIC">PNUEMATIC</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}alo" class="others-input hidden"></div>
+            <div class="form-group"><label>Material</label><select id="${prefix}am_mat"><option value="BLANK">BLANK</option><option value="CS" selected>CS</option><option value="SS">SS</option><option value="GI">GI</option><option value="ALUMINIUM">ALUMINIUM</option><option value="BRASS">BRASS</option><option value="PTFE">PTFE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}am_mato" class="others-input hidden"></div>
+            <div class="form-group"><label>Type</label><select id="${prefix}at"><option value="BLANK" selected>BLANK</option><option value="HAMMER UNION">HAMMER UNION</option><option value="CAMLOCK">CAMLOCK</option><option value="CHICAGO/CROWFOOT">CHICAGO/CROWFOOT</option><option value="QUICK RELEASE COUPLING (QRC)">QUICK RELEASE COUPLING (QRC)</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ato" class="others-input hidden"></div>
+            <div class="form-group"><label>Model</label><select id="${prefix}al"><option value="BLANK" selected>BLANK</option><option value="COUPLING">COUPLING</option><option value="FIG100">FIG100</option><option value="FIG200">FIG200</option><option value="FIG206">FIG206</option><option value="FIG602">FIG602</option><option value="FIG1502">FIG1502</option><option value="TYPE A">TYPE A</option><option value="TYPE B">TYPE B</option><option value="TYPE C">TYPE C</option><option value="TYPE D">TYPE D</option><option value="TYPE E">TYPE E</option><option value="TYPE F">TYPE F</option><option value="ISO 7241- A SERIES">ISO 7241- A SERIES</option><option value="ISO 7241- B SERIES">ISO 7241- B SERIES</option><option value="ISO 14540 - 10K PSI">ISO 14540 - 10K PSI</option><option value="ISO 16028- FLAT FACED SERIES">ISO 16028- FLAT FACED SERIES</option><option value="AIR BREATHING">AIR BREATHING</option><option value="WATER BLAST - 15K PSI">WATER BLAST - 15K PSI</option><option value="TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)">TRUCK COUPLING THREAD TYPE HYDRAULIC QUICK COUPLING ( STEEL)</option><option value="THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )">THREAD TYPE HYDRAULIC QUICK COUPLING ( BRASS )</option><option value="PNUEMATIC">PNUEMATIC</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}alo" class="others-input hidden"></div>
             <div class="form-group"><label>Gender</label><select id="${prefix}ag"><option value="BLANK" selected>BLANK</option><option value="MALE">MALE</option><option value="FEMALE">FEMALE</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}ago" class="others-input hidden"></div>
             <div class="form-group"><label>Accessory</label><select id="${prefix}ac"><option value="BLANK" selected>BLANK</option><option value="WITH DUST CAP">WITH DUST CAP</option><option value="WITH DUST PLUG">WITH DUST PLUG</option><option value="OTHERS">OTHERS</option></select><input type="text" id="${prefix}aco" class="others-input hidden"></div>
         </div>`;
@@ -168,6 +173,7 @@
             const s = getEl(sId), o = getEl(oId);
             if (!s) return "";
             if (s.value === 'BLANK') { if(o) o.classList.add('hidden'); return ""; }
+            if (s.value === 'NOT APPLICABLE') { if(o) o.classList.add('hidden'); return "NA_INTERNAL_HIDDEN"; }
             if (s.value === 'OTHERS') {
                 if(o) { o.classList.remove('hidden'); return o.value.trim() || "[Specify]"; }
                 return "";
@@ -178,12 +184,17 @@
 
         function buildEndStr(p) {
             let base = `${getEl(p+'s').value} ${resolveVal(p+'m', p+'mo')} ${resolveVal(p+'t', p+'to')} ${resolveVal(p+'g', p+'go')} ${resolveVal(p+'f', p+'fo')} ${resolveVal(p+'sh', p+'sho')}`.replace(/\s+/g, ' ').trim();
+            
             const am = resolveVal(p+'am', p+'amo');
-            if (am !== "") {
-                const attach = `, ${am} ${getEl(p+'as').value} ${resolveVal(p+'am_mat', p+'am_mato')} ${resolveVal(p+'at', p+'ato')} ${resolveVal(p+'al', p+'alo')} ${resolveVal(p+'ag', p+'ago')} ${resolveVal(p+'ac', p+'aco')}`.replace(/\s+/g, ' ').trim();
-                return base + attach;
+            
+            // If Attach Method is NOT APPLICABLE, return only the base part.
+            if (am === "NA_INTERNAL_HIDDEN") {
+                return base;
             }
-            return base;
+            
+            const attach = `, ${am} ${getEl(p+'as').value} ${resolveVal(p+'am_mat', p+'am_mato')} ${resolveVal(p+'at', p+'ato')} ${resolveVal(p+'al', p+'alo')} ${resolveVal(p+'ag', p+'ago')} ${resolveVal(p+'ac', p+'aco')}`.replace(/\s+/g, ' ').trim();
+            
+            return base + attach;
         }
 
         function update() {
